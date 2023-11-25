@@ -1,0 +1,16 @@
+.calculated-results {
+  .result-item {
+    line-height: 7rem;
+
+    span {
+      color: $off-black;
+      font-size: 8rem;
+      font-weight: 700;
+      font-style: italic;
+
+      &:first-child {
+        color: $purple;
+      }
+    }
+  }
+}

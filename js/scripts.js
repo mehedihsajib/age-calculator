@@ -23,9 +23,9 @@ function calculateAge() {
   const monthInput = document.getElementById("month");
   const yearInput = document.getElementById("year");
 
-  // Get the values from the inputs
   const day = parseInt(dayInput.value);
-  const month = parseInt(monthInput.value) - 1; // Months are zero-indexed in JavaScript
+  // Months are zero-indexed in JavaScript
+  const month = parseInt(monthInput.value) - 1;
   const year = parseInt(yearInput.value);
 
   // Create a Date object for the birthdate
@@ -51,7 +51,6 @@ function calculateAge() {
       (24 * 60 * 60 * 1000)
   );
 
-  // Display the age in spans
   document.getElementById("setYears").textContent = ageInYears;
   document.getElementById("setMonths").textContent = ageInMonths;
   document.getElementById("setDays").textContent = ageInDays;
@@ -68,29 +67,32 @@ function handleSubmit(e) {
 
     if (input.value.trim() === "") {
       errorMessage = "This field is required";
-      calculatorForm.classList.add("has-error");
+      input.closest(".form-item").classList.add("has-error");
       isValid = false;
     } else {
+      input.closest(".form-item").classList.remove("has-error");
       if (
         input.id === "day" &&
         (input.value.trim() < 1 || input.value.trim() > 31)
       ) {
         errorMessage = "Must be a valid day";
-        calculatorForm.classList.add("has-error");
+        let test = input.closest(".form-item");
+        input.closest(".form-item").classList.add("has-error");
+        console.log(test);
         isValid = false;
       } else if (
         input.id === "month" &&
         (input.value.trim() < 1 || input.value.trim() > 12)
       ) {
         errorMessage = "Must be a valid month";
-        calculatorForm.classList.add("has-error");
+        input.closest(".form-item").classList.add("has-error");
+
         isValid = false;
       } else if (input.id === "year" && input.value.trim() > currentYear) {
         errorMessage = "Must be in the future";
-        calculatorForm.classList.add("has-error");
+        input.closest(".form-item").classList.add("has-error");
         isValid = false;
       }
-      calculatorForm.classList.remove("has-error");
     }
     showError(input, errorMessage);
   }

@@ -13,19 +13,34 @@
   }
 
   .form-item {
+    width: 16rem;
     display: flex;
     flex-direction: column;
     gap: 5px;
+
+    &.has-error {
+      input {
+        border-color: $light-red;
+      }
+
+      label {
+        color: $light-red;
+      }
+    }
   }
 
   input {
     font-size: 3.2rem;
     font-weight: 700;
-    width: 16rem;
+    width: 100%;
     height: 6rem;
     padding: 1rem;
     border: 1px solid $light-grey;
     border-radius: 8px;
+
+    @media (max-width: 575px) {
+      font-size: 2rem;
+    }
 
     &:focus {
       outline-color: $purple;
@@ -75,16 +90,12 @@
       position: relative;
       z-index: 5;
       cursor: pointer;
-    }
-  }
 
-  &.has-error {
-    input {
-      border-color: $light-red;
-    }
-
-    label {
-      color: $light-red;
+      @media (max-width: 575px) {
+        width: 8rem;
+        height: 8rem;
+        margin-top: 3rem;
+      }
     }
   }
 }

@@ -2,11 +2,19 @@
   .result-item {
     line-height: 7rem;
 
+    @media (max-width: 575px) {
+      line-height: 6rem;
+    }
+
     span {
       color: $off-black;
       font-size: 8rem;
       font-weight: 700;
       font-style: italic;
+
+      @media (max-width: 575px) {
+        font-size: 4.8rem;
+      }
 
       &:first-child {
         color: $purple;

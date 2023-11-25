@@ -77,4 +77,14 @@
       cursor: pointer;
     }
   }
+
+  &.has-error {
+    input {
+      border-color: $light-red;
+    }
+
+    label {
+      color: $light-red;
+    }
+  }
 }

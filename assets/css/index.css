@@ -122,6 +122,12 @@ body {
   z-index: 5;
   cursor: pointer;
 }
+.calculator-form.has-error input {
+  border-color: hsl(0deg, 100%, 67%);
+}
+.calculator-form.has-error label {
+  color: hsl(0deg, 100%, 67%);
+}
 
 .calculated-results .result-item {
   line-height: 7rem;

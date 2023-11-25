@@ -1,12 +1,14 @@
 "use strict";
 
-let calculatorForm = document.getElementById("calculatorForm");
-let errorMessage = document.querySelector(".error-msg");
-let inputs = document.querySelectorAll(".form-item input");
+const calculatorForm = document.getElementById("calculatorForm");
+const errorMessage = document.querySelector(".error-msg");
+const inputs = document.querySelectorAll(".form-item input");
 
 const dayInput = document.getElementById("day");
 const monthInput = document.getElementById("month");
 const yearInput = document.getElementById("year");
+
+let isValid = true;
 
 function showError(input, errorMessage) {
   let errorElement = document.querySelector(`[data-input="${input.id}-error"]`);
@@ -15,6 +17,40 @@ function showError(input, errorMessage) {
     errorElement.classList.add("show");
   } else {
     errorElement.classList.remove("show");
+  }
+}
+
+function validateInputFields() {
+  for (let i = 0; i < inputs.length; i++) {
+    let input = inputs[i];
+    let errorMessage = "";
+    let value = input.value.trim();
+    let currentYear = new Date().getFullYear();
+
+    if (value === "") {
+      errorMessage = "This field is required";
+      input.closest(".form-item").classList.add("has-error");
+      isValid = false;
+    } else {
+      input.closest(".form-item").classList.remove("has-error");
+      if (input.id === "day" && (value < 1 || value > 31)) {
+        errorMessage = "Must be a valid day";
+        let test = input.closest(".form-item");
+        input.closest(".form-item").classList.add("has-error");
+        console.log(test);
+        isValid = false;
+      } else if (input.id === "month" && (value < 1 || value > 12)) {
+        errorMessage = "Must be a valid month";
+        input.closest(".form-item").classList.add("has-error");
+
+        isValid = false;
+      } else if (input.id === "year" && value > currentYear) {
+        errorMessage = "Must be in the future";
+        input.closest(".form-item").classList.add("has-error");
+        isValid = false;
+      }
+    }
+    showError(input, errorMessage);
   }
 }
 
@@ -58,44 +94,7 @@ function calculateAge() {
 
 function handleSubmit(e) {
   e.preventDefault();
-  let isValid = true;
-
-  for (let i = 0; i < inputs.length; i++) {
-    let input = inputs[i];
-    let errorMessage = "";
-    let currentYear = new Date().getFullYear();
-
-    if (input.value.trim() === "") {
-      errorMessage = "This field is required";
-      input.closest(".form-item").classList.add("has-error");
-      isValid = false;
-    } else {
-      input.closest(".form-item").classList.remove("has-error");
-      if (
-        input.id === "day" &&
-        (input.value.trim() < 1 || input.value.trim() > 31)
-      ) {
-        errorMessage = "Must be a valid day";
-        let test = input.closest(".form-item");
-        input.closest(".form-item").classList.add("has-error");
-        console.log(test);
-        isValid = false;
-      } else if (
-        input.id === "month" &&
-        (input.value.trim() < 1 || input.value.trim() > 12)
-      ) {
-        errorMessage = "Must be a valid month";
-        input.closest(".form-item").classList.add("has-error");
-
-        isValid = false;
-      } else if (input.id === "year" && input.value.trim() > currentYear) {
-        errorMessage = "Must be in the future";
-        input.closest(".form-item").classList.add("has-error");
-        isValid = false;
-      }
-    }
-    showError(input, errorMessage);
-  }
+  validateInputFields();
 
   if (isValid) {
     calculateAge();

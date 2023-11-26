@@ -1,14 +1,14 @@
 .calculated-results {
   .result-item {
-    line-height: 7rem;
+    line-height: 6rem;
 
     @media (max-width: 575px) {
-      line-height: 6rem;
+      line-height: 5rem;
     }
 
     span {
       color: $off-black;
-      font-size: 8rem;
+      font-size: 6rem;
       font-weight: 700;
       font-style: italic;
 

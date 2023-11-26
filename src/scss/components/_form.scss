@@ -55,11 +55,6 @@
     color: $light-red;
     font-size: 1.4rem;
     font-style: italic;
-    display: none;
-
-    &.show {
-      display: block;
-    }
   }
 
   .form-submit {

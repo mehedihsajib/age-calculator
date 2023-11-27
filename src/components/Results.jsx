@@ -1,17 +1,17 @@
-export default function Results() {
+export default function Results({ day, month, year }) {
   return (
     <div className="calculated-results">
       <div className="result-item">
-        <span id="setYears">--</span>
-        <span>years</span>
+        <span> {year ? year : "--"}</span>
+        <span> years</span>
       </div>
       <div className="result-item">
-        <span id="setMonths">--</span>
-        <span>months</span>
+        <span>{month ? month : "--"}</span>
+        <span> months</span>
       </div>
       <div className="result-item">
-        <span id="setDays">--</span>
-        <span>days</span>
+        <span>{day ? day : "--"}</span>
+        <span> days</span>
       </div>
     </div>
   );

@@ -1,14 +1,22 @@
-import { useState } from "react";
 import arroIcon from "../assets/icon-arrow.svg";
-export default function Form() {
-  const [day, setDay] = useState("");
-  const [month, setMonth] = useState("");
-  const [year, setYear] = useState("");
-  const [error, setError] = useState(false);
-  const [dayErrorMsg, setDayErrorMsg] = useState("");
-  const [monthErrorMsg, setMonthErrorMsg] = useState("");
-  const [yearErrorMsg, setYearErrorMsg] = useState("");
 
+export default function Form({
+  day,
+  month,
+  year,
+  setDay,
+  setMonth,
+  setYear,
+  error,
+  setError,
+  dayErrorMsg,
+  setDayErrorMsg,
+  monthErrorMsg,
+  setMonthErrorMsg,
+  yearErrorMsg,
+  setYearErrorMsg,
+  submitHandler,
+}) {
   function dayChangeHandler(e) {
     const newDay = e.target.value;
     setDay(newDay);
@@ -51,36 +59,6 @@ export default function Form() {
       setYearErrorMsg("");
     }
   }
-
-  function submitHandler(e) {
-    e.preventDefault();
-
-    if (!day || !month || !year) {
-      setError(true);
-      setDayErrorMsg("This field is required");
-      setMonthErrorMsg("This field is required");
-      setYearErrorMsg("This field is required");
-    } else {
-      setError(false);
-    }
-    console.log(day, month, year);
-    setDay("");
-    setMonth("");
-    setYear("");
-  }
-
-  // if (day === "" || month === "" || year === "") {
-  //   setError(true);
-  //   setDayErrorMsg("This field is required");
-  //   setMonthErrorMsg("This field is required");
-  //   setYearErrorMsg("This field is required");
-  // }
-
-  // if(day.trim() === "") {
-
-  // } else if (day.trim < 1 || day.trim > 31) {
-  //   setError(true);
-  // }
 
   return (
     <form className="calculator-form" onSubmit={submitHandler}>
